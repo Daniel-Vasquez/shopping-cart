@@ -24,7 +24,6 @@ export function Filters () {
 
   return (
     <section className='filters'>
-
       <div>
         <label htmlFor={minPriceFilterId}>Precio a partir de:</label>
         <input
@@ -38,12 +37,13 @@ export function Filters () {
         <span>${filters.minPrice}</span>
       </div>
 
-      <div>
+      <div className='categories'>
         <label htmlFor={categoryFilterId}>Categoría</label>
-        <select id={categoryFilterId} onChange={handleChangeCategory}>
+        <select className='categories-select' id={categoryFilterId} onChange={handleChangeCategory}>
           <option value='all'>Todas</option>
           <option value='laptops'>Portátiles</option>
           <option value='smartphones'>Celulares</option>
+          <option value='fragrances'>Fragancias</option>
         </select>
       </div>
 

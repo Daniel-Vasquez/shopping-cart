@@ -10,6 +10,12 @@ export function Products({ products }) {
     return cart.some(item => item.id === product.id)
   }
 
+  if (products.length === 0) {
+    return (
+      <h1>No hay productos</h1>
+    )
+  }
+
   return (
     <main className='products'>
       <ul>
