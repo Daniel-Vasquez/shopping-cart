@@ -42,7 +42,7 @@
   padding: 4px;
   position: absolute;
   right: 25px;
-  top: 8px;
+  top: 15px;
   transition: all .3s ease;
   width: 32px;
   z-index: 9999;
@@ -56,4 +56,19 @@
 .cart-button ~ input:checked ~ .cart {
   height: 100%;
   display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .cart {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .cart li {
+    margin-bottom: 20px;
+  }
+
+  .cart img {
+    width: 70%;
+  }
 }

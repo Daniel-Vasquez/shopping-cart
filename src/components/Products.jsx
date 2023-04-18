@@ -1,45 +1,7 @@
-import { useState } from 'react';
 import { AddToCartIcon, RemoveFromCartIcon } from './Icons.jsx'
 import { useCart } from '../hooks/useCart.js'
+import { Carousel } from './Carousel.jsx'
 import './Products.css'
-
-function Carousel({ images }) {
-  const [position, setPosition] = useState(0);
-  const imgWidth = 250; // Ajusta el ancho de las imágenes según tus necesidades
-  
-  const handleNavLeftClick = () => {
-    console.log('left')
-    if (position > 0) {
-      setPosition(position - imgWidth);
-    }
-  };
-  
-  const handleNavRightClick = () => {
-    if (position < imgWidth * (images.length - 1)) {
-      setPosition(position + imgWidth);
-    }
-  };
-  
-  return (
-    <div className="carousel-container">
-      <div className="carousel-wrapper" style={{ transform: `translateX(-${position}px)` }}>
-        {images.map((image, index) => (
-          <img key={index} src={image} alt={`Imagen ${index + 1}`} lazy='loading'/>
-        ))}
-      </div>
-      {images.length > 1 && (
-        <>
-          <button className="carousel-nav-left" onClick={handleNavLeftClick}>
-            {'<'}
-          </button>
-          <button className="carousel-nav-right" onClick={handleNavRightClick}>
-            {'>'}
-          </button>
-        </>
-      )}
-    </div>
-  );
-}
 
 export function Products({ products }) {
   const { addToCart, removeFromCart, cart } = useCart()
@@ -51,18 +13,15 @@ export function Products({ products }) {
   return (
     <main className='products'>
       <ul>
-        {products.slice(0, 10).map(product => {
+        {products.map(product => {
+          const { id, images, title, price } = product
           const isProductInCart = checkProductInCart(product)
 
           return (
-            <li key={product.id}>
-              {/* <img
-                src={product.thumbnail}
-                alt={product.title}
-              /> */}
-              <Carousel images={ product.images } />
+            <li key={id}>
+              <Carousel images={ images } />
               <div>
-                <strong>{product.title}</strong> - ${product.price}
+                <strong>{title}</strong> - ${price.toLocaleString()}
               </div>
               <div>
                 <button

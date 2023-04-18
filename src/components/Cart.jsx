@@ -12,15 +12,15 @@ function CartItem({ thumbnail, price, title, quantity, addToCart }) {
         alt={title}
       />
       <div>
-        <strong>{title}</strong> - ${price}
+        <strong>{title}</strong> - ${price.toLocaleString()}
       </div>
 
-      <footer>
+      {/* <footer>
         <small>
           Qty: {quantity}
         </small>
         <button onClick={addToCart}>+</button>
-      </footer>
+      </footer> */}
     </li>
   )
 }
@@ -49,9 +49,11 @@ export function Cart() {
           ))}
         </ul>
 
-        <section>
-          <p>Total: { total }</p>
-        </section>
+        {total > 0 && (
+          <section>
+            <p>Total: ${ total.toLocaleString() }</p>
+          </section>
+        )}
 
         <button onClick={clearCart}>
           <ClearCartIcon />
