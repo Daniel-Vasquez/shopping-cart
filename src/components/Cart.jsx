@@ -1,10 +1,14 @@
-import './Cart.css'
-
 import { useId } from 'react'
 import { CartIcon, ClearCartIcon } from './Icons.jsx'
 import { useCart } from '../hooks/useCart.js'
+import { RemoveFromCartIcon } from './Icons.jsx'
+import './Cart.css'
 
-function CartItem({ thumbnail, price, title, quantity, addToCart }) {
+function totalCartQuantity(cart) {
+  return cart.reduce((total, product) => total + product.price * product.quantity, 0);
+}
+
+function CartItem({ thumbnail, price, title, quantity, stock, addToCart, removeFromCart }) {
   return (
     <li>
       <img
@@ -15,21 +19,27 @@ function CartItem({ thumbnail, price, title, quantity, addToCart }) {
         <strong>{title}</strong> - ${price.toLocaleString()}
       </div>
 
-      {/* <footer>
+      <footer>
         <small>
           Qty: {quantity}
         </small>
-        <button onClick={addToCart}>+</button>
-      </footer> */}
+        <button disabled={quantity >= stock} onClick={addToCart}>+</button>
+      </footer>
+
+      <div>
+        <button style={{ backgroundColor: 'red' }} onClick={removeFromCart}>
+          <RemoveFromCartIcon />
+        </button>
+      </div>
     </li>
   )
 }
 
 export function Cart() {
   const cartCheckboxId = useId()
-  const { cart, clearCart, addToCart } = useCart()
+  const { cart, clearCart, addToCart, removeFromCart } = useCart()
 
-  const total = cart.reduce((total, acc) => total + acc.price, 0)
+  const totalItemsCart = totalCartQuantity(cart)
 
   return (
     <>
@@ -44,14 +54,15 @@ export function Cart() {
             <CartItem
               key={product.id}
               addToCart={() => addToCart(product)}
+              removeFromCart={() => removeFromCart(product)}
               {...product}
             />
           ))}
         </ul>
 
-        {total > 0 && (
+        {totalItemsCart > 0 && (
           <section>
-            <p>Total: ${ total.toLocaleString() }</p>
+            <p>Total: ${ totalItemsCart.toLocaleString() }</p>
           </section>
         )}
 

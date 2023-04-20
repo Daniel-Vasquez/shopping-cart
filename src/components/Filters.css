@@ -11,6 +11,10 @@
   gap: 1rem;
 }
 
+.categories {
+  align-items: center;
+}
+
 .categories-select {
   border: 1px solid #0199ff;
   padding: 5px 10px;

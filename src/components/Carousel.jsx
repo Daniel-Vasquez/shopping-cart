@@ -3,6 +3,7 @@ import './Carousel.css'
 
 export function Carousel({ images }) {
   const [position, setPosition] = useState(0);
+
   const imgWidth = 250;
   
   const handleNavLeftClick = () => {
@@ -20,9 +21,11 @@ export function Carousel({ images }) {
   return (
     <div className="carousel-container">
       <div className="carousel-wrapper" style={{ transform: `translateX(-${position}px)` }}>
-        {images.map((image, index) => (
-          <img key={index} src={image} alt={`Imagen ${index + 1}`} lazy='loading'/>
-        ))}
+        {images.map((image, index) => {
+          return (
+            <img key={index} src={image} alt={`Imagen ${index + 1}`} lazy='loading' />
+          )
+        })}
       </div>
       {images.length > 1 && (
         <>
