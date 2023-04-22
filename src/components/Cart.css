@@ -58,6 +58,11 @@
   display: block;
 }
 
+.cart-btn {
+  margin: 30px;
+  padding: 20px 0px;
+}
+
 @media screen and (max-width: 500px) {
   .cart {
     width: 100%;

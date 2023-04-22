@@ -1,6 +1,5 @@
-import { AddToCartIcon, RemoveFromCartIcon } from './Icons.jsx'
 import { useCart } from '../hooks/useCart.js'
-import { Carousel } from './Carousel.jsx'
+import { Product } from './Product.jsx'
 import './Products.css'
 
 export function Products({ products }) {
@@ -19,34 +18,12 @@ export function Products({ products }) {
   return (
     <main className='products'>
       <ul>
-        {products.map(product => {
-          const { id, images, title, price } = product
-          const isProductInCart = checkProductInCart(product)
-
-          return (
-            <li key={id}>
-              <Carousel images={ images } />
-              <div>
-                <strong>{title}</strong> - ${price.toLocaleString()}
-              </div>
-              <div>
-                <button
-                  style={{ backgroundColor: isProductInCart ? 'red' : '#09f' }} onClick={() => {
-                    isProductInCart
-                      ? removeFromCart(product)
-                      : addToCart(product)
-                  }}
-                >
-                  {
-                    isProductInCart
-                      ? <RemoveFromCartIcon />
-                      : <AddToCartIcon />
-                  }
-                </button>
-              </div>
-            </li>
-          )
-        })}
+        <Product
+          products={products}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          checkProductInCart={ checkProductInCart }
+        />
       </ul>
     </main>
   )

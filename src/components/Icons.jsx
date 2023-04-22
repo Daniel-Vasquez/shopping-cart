@@ -43,13 +43,11 @@ export function ClearCartIcon () {
 export function CartIcon ({totalProductsAdded}) {
   return (
     <>
-      {totalProductsAdded.length > 0 && ( 
-        <div
-          className='products-added-cart'
-        >
-          {totalProductsAdded.length}
-        </div>
-      )}
+      <div
+        className='products-added-cart'
+      >
+        {totalProductsAdded.length}
+      </div>
       <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' strokeWidth='1' stroke='currentColor' fill='none' strokeLinecap='round' strokeLinejoin='round'>
         <path stroke='none' d='M0 0h24v24H0z' fill='none' />
         <path d='M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0' />

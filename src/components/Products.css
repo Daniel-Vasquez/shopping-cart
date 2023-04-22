@@ -3,7 +3,7 @@
   grid-template-columns: repeat(
     auto-fit,
     minmax(
-      200px,
+      225px,
       1fr
     )
   );
@@ -36,4 +36,13 @@
   aspect-ratio: 16/9;
   display: block;
   object-fit: cover;
+}
+
+.product-btn {
+  color: white;
+  transition: all .3s;
+}
+
+.product-btn:hover {
+  color: #0099ff;
 }

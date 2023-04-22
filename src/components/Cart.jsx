@@ -1,42 +1,14 @@
 import { useId } from 'react'
 import { CartIcon, ClearCartIcon } from './Icons.jsx'
 import { useCart } from '../hooks/useCart.js'
-import { RemoveFromCartIcon } from './Icons.jsx'
+import { CartItem } from './CartItem.jsx';
+import { totalCartQuantity } from '../utils/index.js';
+import { Button } from './Button.jsx';
 import './Cart.css'
-
-function totalCartQuantity(cart) {
-  return cart.reduce((total, product) => total + product.price * product.quantity, 0);
-}
-
-function CartItem({ thumbnail, price, title, quantity, stock, addToCart, removeFromCart }) {
-  return (
-    <li>
-      <img
-        src={thumbnail}
-        alt={title}
-      />
-      <div>
-        <strong>{title}</strong> - ${price.toLocaleString()}
-      </div>
-
-      <footer>
-        <small>
-          Qty: {quantity}
-        </small>
-        <button disabled={quantity >= stock} onClick={addToCart}>+</button>
-      </footer>
-
-      <div>
-        <button style={{ backgroundColor: 'red' }} onClick={removeFromCart}>
-          <RemoveFromCartIcon />
-        </button>
-      </div>
-    </li>
-  )
-}
 
 export function Cart() {
   const cartCheckboxId = useId()
+
   const { cart, clearCart, addToCart, removeFromCart } = useCart()
 
   const totalItemsCart = totalCartQuantity(cart)
@@ -61,14 +33,22 @@ export function Cart() {
         </ul>
 
         {totalItemsCart > 0 && (
-          <section>
-            <p>Total: ${ totalItemsCart.toLocaleString() }</p>
-          </section>
-        )}
+          <>
+            <section>
+              <p>Total: ${totalItemsCart.toLocaleString()}</p>
+            </section>
 
-        <button onClick={clearCart}>
-          <ClearCartIcon />
-        </button>
+            <button onClick={clearCart}>
+              <ClearCartIcon />
+            </button>
+            <div className='cart-btn'>
+              <Button
+                route='/checkout'
+                text='Pagar'
+              />
+            </div>
+          </>
+        )}
       </aside>
     </>
   )

@@ -4,7 +4,7 @@ import './Carousel.css'
 export function Carousel({ images }) {
   const [position, setPosition] = useState(0);
 
-  const imgWidth = 250;
+  const imgWidth = 200;
   
   const handleNavLeftClick = () => {
     if (position > 0) {
