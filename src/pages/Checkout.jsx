@@ -2,7 +2,7 @@ import { useCart } from '../hooks/useCart.js'
 import { CartItem } from '../components/CartItem.jsx';
 import { totalCartQuantity } from '../utils/index.js';
 import { Button } from '../components/Button.jsx';
-import '../components/checkout.css'
+import '../components/Checkout.css'
 
 export const Checkout = () => {
   const { cart, clearCart, addToCart, removeFromCart } = useCart()
