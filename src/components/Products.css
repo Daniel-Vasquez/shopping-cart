@@ -30,13 +30,13 @@
   opacity: .9;
 }
 
-.products img {
+/* .products img {
   border-radius: 4px;
   width: 100%;
   aspect-ratio: 16/9;
   display: block;
   object-fit: cover;
-}
+} */
 
 .product-btn {
   color: white;
