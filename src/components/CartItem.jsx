@@ -1,6 +1,6 @@
 import { RemoveFromCartIcon } from '../components/Icons'
 
-export const CartItem = ({ thumbnail, price, title, quantity, stock, addToCart, removeFromCart }) => {
+export const CartItem = ({ thumbnail, price, title, quantity, stock, addToCart, removeToCart, removeFromCart }) => {
   return (
     <li>
       <img
@@ -8,22 +8,23 @@ export const CartItem = ({ thumbnail, price, title, quantity, stock, addToCart, 
         alt={title}
       />
       <div>
-        <div>
+        <section>
           <strong>{title} - ${price.toLocaleString()}</strong>
-        </div>
+        </section>
 
-        <footer>
+        <section className='product-quantity'>
           <small>
             Qty: {quantity}
           </small>
+          <button disabled={quantity <= 1} onClick={removeToCart}>-</button>
           <button disabled={quantity >= stock} onClick={addToCart}>+</button>
-        </footer>
+        </section>
 
-        <div>
+        <section>
           <button style={{ backgroundColor: 'red' }} onClick={removeFromCart}>
             <RemoveFromCartIcon />
           </button>
-        </div>
+        </section>
       </div>
     </li>
   )

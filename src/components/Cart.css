@@ -5,7 +5,7 @@
   position: fixed;
   right: 0px;
   top: 0px;
-  width: 200px;
+  width: 220px;
   z-index: 999;
   overflow-y: scroll;
 }
@@ -18,6 +18,14 @@
 .cart li {
   border-bottom: 1px solid #444;
   padding-bottom: 16px;
+}
+
+.cart li div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart footer {

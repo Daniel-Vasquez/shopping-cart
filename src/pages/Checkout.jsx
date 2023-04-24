@@ -5,7 +5,7 @@ import { Button } from '../components/Button.jsx';
 import '../components/Checkout.css'
 
 export const Checkout = () => {
-  const { cart, clearCart, addToCart, removeFromCart } = useCart()
+  const { cart, clearCart, addToCart, removeToCart, removeFromCart } = useCart()
 
   const totalItemsCart = totalCartQuantity(cart)
 
@@ -30,6 +30,7 @@ export const Checkout = () => {
             <CartItem
               key={product.id}
               addToCart={() => addToCart(product)}
+              removeToCart={() => removeToCart(product)}
               removeFromCart={() => removeFromCart(product)}
               {...product}
             />

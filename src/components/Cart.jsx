@@ -9,7 +9,7 @@ import './Cart.css'
 export function Cart() {
   const cartCheckboxId = useId()
 
-  const { cart, clearCart, addToCart, removeFromCart } = useCart()
+  const { cart, clearCart, addToCart, removeToCart, removeFromCart } = useCart()
 
   const totalItemsCart = totalCartQuantity(cart)
 
@@ -26,6 +26,7 @@ export function Cart() {
             <CartItem
               key={product.id}
               addToCart={() => addToCart(product)}
+              removeToCart={() => removeToCart(product)}
               removeFromCart={() => removeFromCart(product)}
               {...product}
             />
