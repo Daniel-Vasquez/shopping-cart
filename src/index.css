@@ -39,7 +39,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.3s;
   margin: 0px 10px;
 }
 button:hover {
@@ -49,6 +49,15 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+button:disabled {
+  cursor: no-drop;
+}
+
+button:disabled:hover {
+  border-color: red;
+}
+
 
 ul {
   list-style: none;

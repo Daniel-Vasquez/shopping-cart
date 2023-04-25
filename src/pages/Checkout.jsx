@@ -2,6 +2,7 @@ import { useCart } from '../hooks/useCart.js'
 import { CartItem } from '../components/CartItem.jsx';
 import { totalCartQuantity } from '../utils/index.js';
 import { Button } from '../components/Button.jsx';
+import { RemoveFromCartIcon } from '../components/Icons'
 import '../components/Checkout.css'
 
 export const Checkout = () => {
@@ -40,10 +41,19 @@ export const Checkout = () => {
       <div>
         <p>Total: ${totalItemsCart.toLocaleString()}</p>
       </div>
-      <Button
-        route='/'
-        text='Volver'
-      />
+      <div className='products-cart-options'>
+        <button
+          style={{ backgroundColor: 'red' }}
+          onClick={clearCart}
+          title='Vaciar carrito'
+        >
+          <RemoveFromCartIcon />
+        </button>
+        <Button
+          route='/'
+          text='Volver'
+        />
+      </div>
     </>
   )
 }

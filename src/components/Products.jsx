@@ -3,7 +3,7 @@ import { Product } from './Product.jsx'
 import './Products.css'
 
 export function Products({ products }) {
-  const { addToCart, removeFromCart, cart } = useCart()
+  const { addToCart, removeToCart, removeFromCart, cart } = useCart()
 
   const checkProductInCart = product => {
     return cart.some(item => item.id === product.id)
@@ -21,6 +21,7 @@ export function Products({ products }) {
         <Product
           products={products}
           addToCart={addToCart}
+          removeToCart={removeToCart}
           removeFromCart={removeFromCart}
           checkProductInCart={ checkProductInCart }
         />

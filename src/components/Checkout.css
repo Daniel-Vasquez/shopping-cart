@@ -29,6 +29,14 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  margin: 10px 0;
+}
+
+.products-cart-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .products-cart__btn {
