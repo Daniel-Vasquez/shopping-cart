@@ -25,10 +25,9 @@
 }
 
 .product-quantity {
-  display: flex;
+  display: grid;
+  grid-template: 1fr / 1fr 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
   margin: 10px 0;
 }
 

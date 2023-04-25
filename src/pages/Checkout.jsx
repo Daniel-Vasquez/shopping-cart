@@ -1,14 +1,18 @@
 import { useCart } from '../hooks/useCart.js'
 import { CartItem } from '../components/CartItem.jsx';
-import { totalCartQuantity } from '../utils/index.js';
+// import { totalCartQuantity, totalProductsAdded } from '../utils/index.js';
+import { calculateCartTotals } from '../utils/index.js';
 import { Button } from '../components/Button.jsx';
 import { RemoveFromCartIcon } from '../components/Icons'
 import '../components/Checkout.css'
 
 export const Checkout = () => {
   const { cart, clearCart, addToCart, removeToCart, removeFromCart } = useCart()
+  const { totalItemsCart, totalPrice } = calculateCartTotals(cart);
 
-  const totalItemsCart = totalCartQuantity(cart)
+
+  // const totalItemsCart = totalCartQuantity(cart)
+  // const totalProductsAddedToCart = totalProductsAdded(cart)
 
   if (cart.length === 0) {
     return (
@@ -39,7 +43,8 @@ export const Checkout = () => {
         </ul>
       </div>
       <div>
-        <p>Total: ${totalItemsCart.toLocaleString()}</p>
+        <p>Total de productos agregados: { totalItemsCart }</p>
+        <p>Total: ${totalPrice.toLocaleString()}</p>
       </div>
       <div className='products-cart-options'>
         <button

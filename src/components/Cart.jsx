@@ -2,16 +2,14 @@ import { useId } from 'react'
 import { CartIcon, ClearCartIcon } from './Icons.jsx'
 import { useCart } from '../hooks/useCart.js'
 import { CartItem } from './CartItem.jsx';
-import { totalCartQuantity } from '../utils/index.js';
+import { calculateCartTotals } from '../utils/index.js';
 import { Button } from './Button.jsx';
 import './Cart.css'
 
 export function Cart() {
   const cartCheckboxId = useId()
-
   const { cart, clearCart, addToCart, removeToCart, removeFromCart } = useCart()
-
-  const totalItemsCart = totalCartQuantity(cart)
+  const { totalItemsCart, totalPrice } = calculateCartTotals(cart);
 
   return (
     <>
@@ -33,10 +31,11 @@ export function Cart() {
           ))}
         </ul>
 
-        {totalItemsCart > 0 && (
+        {totalPrice > 0 && (
           <>
             <section>
-              <p>Total: ${totalItemsCart.toLocaleString()}</p>
+              <p>Total de productos agregados: { totalItemsCart }</p>
+              <p>Total: ${totalPrice.toLocaleString()}</p>
             </section>
 
             <button onClick={clearCart}>

@@ -43,29 +43,21 @@ const UPDATE_STATE_BY_ACTION = {
     const productInCartIndex = state.findIndex(item => item.id === id);
 
     if (productInCartIndex >= 0) {
-      const currentQuantity = state[productInCartIndex].quantity;
-
-      if (currentQuantity > 1) {
-        const newState = [
-          ...state.slice(0, productInCartIndex),
-          { ...state[productInCartIndex], quantity: currentQuantity - 1 },
-          ...state.slice(productInCartIndex + 1)
-        ];
-
-        updateLocalStorage(newState);
-        return newState;
+      const newState = [...state];
+      const productQuantity = newState[productInCartIndex].quantity;
+  
+      if (productQuantity > 1) {
+        newState[productInCartIndex].quantity = productQuantity - 1;
       } else {
-        const newState = [
-          ...state.slice(0, productInCartIndex),
-          ...state.slice(productInCartIndex + 1)
-        ];
-
-        updateLocalStorage(newState);
-        return newState;
+        newState.splice(productInCartIndex, 1);
       }
+  
+      updateLocalStorage(newState);
+      return newState;
     }
-
+  
     return state;
+
   },
   [CART_ACTION_TYPES.REMOVE_FROM_CART]: (state, action) => {
     const { id } = action.payload
