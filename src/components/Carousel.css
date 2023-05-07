@@ -41,16 +41,12 @@
   color: white;
   font-weight: 600;
   overflow: hidden;
-  /* border: 1px solid #575757; */
 }
 
 .slides-img:last-child {
   margin-right: 0px;
 }
 
-.slides > .slides-img:target {
-  /* transform: scale(0.8); */
-}
 .author-info {
   background: rgba(0, 0, 0, 0.75);
   color: white;

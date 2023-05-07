@@ -13,3 +13,10 @@
   min-height: 200px;
   width: 100%;
 }
+
+.product-details__rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}

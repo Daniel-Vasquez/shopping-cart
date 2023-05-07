@@ -1,21 +1,35 @@
 
-import { useFilters } from '../hooks/useFilters.js'
-import { products as initialProducts } from '../mocks/products.json'
+import { useState, useEffect } from 'react';
+import { products } from '../mocks/products.json'
 import { useParams } from "react-router-dom";
 import { Rating } from '../components/Rating.jsx';
 import { Button } from '../components/Button.jsx'
+import { LoadingScreen } from '../components/LoadingScreen.jsx';
 import '../components/ProductDetails.css'
 
-
 export const ProductDetails = () => {
-  const { filterProducts } = useFilters()
   const { idProduct } = useParams()
+  const [isLoading, setIsLoading] = useState(false)
+  const product = products.find((product) => product.id === parseInt(idProduct))
 
-  const filteredProducts = filterProducts(initialProducts)
+  useEffect(() => {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+  }, [])
 
-  const product = filteredProducts.find((product) => product.id === parseInt(idProduct))
+  const {
+    title,
+    price,
+    thumbnail,
+    description,
+    rating,
+    score,
+    brand
+  } = product
 
-  const { title, price, thumbnail, description, rating, brand } = product
+  if (isLoading) return <LoadingScreen />
 
   return (
     <div className='product-details'>
@@ -27,12 +41,13 @@ export const ProductDetails = () => {
       </h2>
       <p className='product-details__description'>{description}</p>
       <div className='product-details__rating'>
-        <Rating value={ rating } />
+        <Rating value={rating} />
+        {score && <span>{score.toLocaleString()} scores</span>}
       </div>
       <p className='product-details__brand'>Brand: {brand}</p>
       <Button
         route='/'
-        text='Volver'
+        text='Go back'
       />
     </div>
   )

@@ -25,7 +25,7 @@ export function Filters () {
   return (
     <section className='filters'>
       <div>
-        <label htmlFor={minPriceFilterId}>Precio a partir de:</label>
+        <label htmlFor={minPriceFilterId}>Price starting from:</label>
         <input
           type='range'
           id={minPriceFilterId}
@@ -34,19 +34,19 @@ export function Filters () {
           onChange={handleChangeMinPrice}
           value={filters.minPrice}
         />
-        <span>${filters.minPrice}</span>
+        <span>${parseInt(filters.minPrice).toLocaleString()}</span>
       </div>
 
       <div className='categories'>
-        <label htmlFor={categoryFilterId}>Categoría</label>
+        <label htmlFor={categoryFilterId}>Categories:</label>
         <select className='categories-select' id={categoryFilterId} onChange={handleChangeCategory}>
-          <option value='all'>Todas</option>
-          <option value='laptops'>Portátiles</option>
-          <option value='smartphones'>Celulares</option>
-          <option value='fragrances'>Fragancias</option>
-          <option value='home-decoration'>Decoración</option>
-          <option value='skincare'>Salud</option>
-          <option value='groceries'>Comestibles</option>
+          <option value='all'>All</option>
+          <option value='laptops'>Laptops</option>
+          <option value='smartphones'>Smartphones</option>
+          <option value='fragrances'>Fragrances</option>
+          <option value='home-decoration'>Home decoration</option>
+          <option value='skincare'>Skincare</option>
+          <option value='groceries'>Groceries</option>
         </select>
       </div>
 

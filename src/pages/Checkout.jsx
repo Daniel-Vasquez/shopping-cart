@@ -1,6 +1,5 @@
 import { useCart } from '../hooks/useCart.js'
 import { CartItem } from '../components/CartItem.jsx';
-// import { totalCartQuantity, totalProductsAdded } from '../utils/index.js';
 import { calculateCartTotals } from '../utils/index.js';
 import { Button } from '../components/Button.jsx';
 import { RemoveFromCartIcon } from '../components/Icons'
@@ -10,17 +9,13 @@ export const Checkout = () => {
   const { cart, clearCart, addToCart, removeToCart, removeFromCart } = useCart()
   const { totalItemsCart, totalPrice } = calculateCartTotals(cart);
 
-
-  // const totalItemsCart = totalCartQuantity(cart)
-  // const totalProductsAddedToCart = totalProductsAdded(cart)
-
   if (cart.length === 0) {
     return (
       <>
-        <h1>No hay productos agregados</h1>
+        <h1>No products added</h1>
         <Button
           route='/'
-          text='Volver'
+          text='Go back'
         />
       </>
     )
@@ -28,7 +23,7 @@ export const Checkout = () => {
 
   return (
     <>
-      <h2>Productos agregados</h2>
+      <h2>Added products</h2>
       <div className='products-cart'>
         <ul className='products-cart-items'>
           {cart.map(product => (
@@ -43,7 +38,7 @@ export const Checkout = () => {
         </ul>
       </div>
       <div>
-        <p>Total de productos agregados: { totalItemsCart }</p>
+        <p>Total products added: { totalItemsCart }</p>
         <p>Total: ${totalPrice.toLocaleString()}</p>
       </div>
       <div className='products-cart-options'>
@@ -56,7 +51,7 @@ export const Checkout = () => {
         </button>
         <Button
           route='/'
-          text='Volver'
+          text='Go back'
         />
       </div>
     </>

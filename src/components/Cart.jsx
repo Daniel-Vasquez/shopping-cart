@@ -44,7 +44,7 @@ export function Cart() {
             <div className='cart-btn'>
               <Button
                 route='/checkout'
-                text='Pagar'
+                text='Pay'
               />
             </div>
           </>
