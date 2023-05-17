@@ -14,9 +14,13 @@ export const ProductDetails = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    setTimeout(() => {
+    const time = setTimeout(() => {
       setIsLoading(false)
     }, 2000)
+
+    return () => {
+      clearTimeout(time);
+    }
   }, [])
 
   const {

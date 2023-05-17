@@ -13,54 +13,56 @@ export const Product = ({ products, checkProductInCart, removeFromCart, addToCar
       const { quantity } = cart.find((product) => product.id === id) || 0
 
       return (
-        <Link
-          className='product-link'
-          to={`/product/${id}`}
-          key={id}
-        >
-          <li className='product-content'>
-            <Carousel images={images} />
+
+        <li className='product-content'>
+          <Carousel images={images} />
+          <Link
+            className='product-link'
+            to={`/product/${id}`}
+            key={id}
+          >
             <p className='product-title'>
               <strong>{title}</strong> - ${price.toLocaleString()}
             </p>
-            <div>
+          </Link>
+
+          <div>
+            {
+              isProductInCart && (
+                <div className='product-quantity'>
+                  <small>
+                    Qty: {quantity}
+                  </small>
+                  <button
+                    disabled={quantity <= 1}
+                    onClick={() => removeToCart(product)}
+                  >
+                    -
+                  </button>
+                  <button
+                    disabled={quantity >= product.stock}
+                    onClick={() => addToCart(product)}
+                  >
+                    +
+                  </button>
+                </div>
+              )
+            }
+            <button
+              style={{ backgroundColor: isProductInCart ? 'red' : '#09f' }} onClick={() => {
+                isProductInCart
+                  ? removeFromCart(product)
+                  : addToCart(product)
+              }}
+            >
               {
-                isProductInCart && (
-                  <div className='product-quantity'>
-                    <small>
-                      Qty: {quantity}
-                    </small>
-                    <button
-                      disabled={quantity <= 1}
-                      onClick={() => removeToCart(product)}
-                    >
-                      -
-                    </button>
-                    <button
-                      disabled={quantity >= product.stock}
-                      onClick={() => addToCart(product)}
-                    >
-                      +
-                    </button>
-                  </div>
-                )
+                isProductInCart
+                  ? <RemoveFromCartIcon />
+                  : <AddToCartIcon />
               }
-              <button
-                style={{ backgroundColor: isProductInCart ? 'red' : '#09f' }} onClick={() => {
-                  isProductInCart
-                    ? removeFromCart(product)
-                    : addToCart(product)
-                }}
-              >
-                {
-                  isProductInCart
-                    ? <RemoveFromCartIcon />
-                    : <AddToCartIcon />
-                }
-              </button>
-            </div>
-          </li>
-        </Link>
+            </button>
+          </div>
+        </li>
 
       )
     })

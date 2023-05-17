@@ -7,7 +7,7 @@
       1fr
     )
   );
-  gap: 1rem;
+  gap: 20px;
 }
 
 .product-link {
@@ -26,7 +26,7 @@
   border-radius: 10px;
   background: black;
   color: #fff;
-  padding: 1rem;
+  padding: 10px 15px;
   border: 1px solid #4e4e4e;
   transition: all .3s;
   cursor: pointer;
@@ -39,4 +39,11 @@
 .products .product-title {
   margin: 5px 0;
   transition: all .3s;
+}
+
+@media screen and (max-width: 500px) {
+  .products .product-content {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
